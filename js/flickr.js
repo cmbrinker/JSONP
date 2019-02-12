@@ -23,9 +23,10 @@
 // });
 
 $(document).ready(function() {
-  $('button').click(function() {
+  $('form').submit(function(evt) {
+    evt.preventDefault();
     var url = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
-    var searchData = $('#search').text();
+    var searchData = $('#search').val();
     var sentData = {
       tags: searchData,
       format: 'json'
