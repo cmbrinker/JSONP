@@ -23,8 +23,8 @@
 // });
 
 $(document).ready(function() {
-  $('form').submit(function(evt) {
-    evt.preventDefault();
+  $('form').submit(function(event) {
+    event.preventDefault();
     var url = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
     var searchData = $('#search').val();
     var sentData = {
@@ -35,8 +35,8 @@ $(document).ready(function() {
       var photoHTML = '<ul>';
       $.each(flickrData.items, function(index, photo) {
         photoHTML += '<li class="grid-25 tablet-grid-50">';
-        photoHTML += '<img src="' + photo.media.m + '" class=image>';
-        photoHTML += '<a href="' + photo.link + '"></a></li>';
+        photoHTML += '<a href="' + photo.link + '">';
+        photoHTML += '<img src="' + photo.media.m + '" class=image></a></li>';
       });
       photoHTML += '</ul>';
       $('#photos').html(photoHTML);
