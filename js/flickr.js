@@ -26,9 +26,14 @@ $(document).ready(function() {
   $('form').submit(function(event) {
     event.preventDefault();
     var url = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
-    var searchData = $('#search').val();
+    var $searchData = $('#search');
+    var $submitButton = $('#submit');
+
+    $searchData.prop('disabled', true);
+    $submitButton.attr('disabled', true).val('searching...');
+    var $searchTerm = $('#search').val();
     var sentData = {
-      tags: searchData,
+      tags: $searchTerm,
       format: 'json'
     };
     function callback (flickrData) {
@@ -40,6 +45,9 @@ $(document).ready(function() {
       });
       photoHTML += '</ul>';
       $('#photos').html(photoHTML);
+      $searchData.prop('disabled', false);
+      $submitButton.prop('disabled', false).val('search');
+
     };
     $.getJSON(url, sentData, callback);
 });
